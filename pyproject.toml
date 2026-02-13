@@ -1,0 +1,41 @@
+[project]
+name = "mediaboard-csfd-top300"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "beautifulsoup4>=4.14.3",
+    "bpython>=0.26",
+    "click>=8.3.1",
+    "flask>=3.1.2",
+    "httpx>=0.28.1",
+    "rich>=14.3.2",
+    "sqlalchemy>=2.0.46",
+]
+
+[project.scripts]
+scraper = "scraper_cli:main"
+web = "web:run"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+addopts = "--doctest-modules"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.25",
+    "respx>=0.22",
+    "ruff>=0.15.1",
+]
+
+[tool.ruff]
+src = ["src"]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]

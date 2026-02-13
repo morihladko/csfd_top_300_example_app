@@ -1,0 +1,9 @@
+{% if actors %}
+<ul class="list-group">
+    {% for actor in actors %}
+    <li class="list-group-item"><a href="/actor/{{ actor.id }}">{{ actor.name }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p class="text-muted">No actors found.</p>
+{% endif %}

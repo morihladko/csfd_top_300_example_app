@@ -1,0 +1,9 @@
+{% if movies %}
+<ul class="list-group">
+    {% for movie in movies %}
+    <li class="list-group-item"><a href="/movie/{{ movie.id }}">{{ movie.title }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p class="text-muted">No movies found.</p>
+{% endif %}

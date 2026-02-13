@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <h1 class="mb-4">CSFD Top 300</h1>
+        <form id="search-form">
+            <div class="input-group">
+                <input type="text" class="form-control" id="search-input" placeholder="Search movies or actors...">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </form>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h2>Movies</h2>
+                <div id="movies-results"></div>
+            </div>
+            <div class="col-md-6">
+                <h2>Actors</h2>
+                <div id="actors-results"></div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        const form = document.getElementById("search-form");
+        const input = document.getElementById("search-input");
+        const moviesDiv = document.getElementById("movies-results");
+        const actorsDiv = document.getElementById("actors-results");
+
+        async function fetchResults(q) {
+            if (!q) {
+                moviesDiv.innerHTML = "";
+                actorsDiv.innerHTML = "";
+                return;
+            }
+
+            const [moviesResp, actorsResp] = await Promise.all([
+                fetch(`/search_movies?q=${encodeURIComponent(q)}`),
+                fetch(`/search_actors?q=${encodeURIComponent(q)}`),
+            ]);
+
+            moviesDiv.innerHTML = await moviesResp.text();
+            actorsDiv.innerHTML = await actorsResp.text();
+        }
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const q = input.value.trim();
+            if (!q) return;
+
+            const url = new URL(window.location);
+            url.searchParams.set("q", q);
+            history.pushState(null, "", url);
+
+            fetchResults(q);
+        });
+
+        window.addEventListener("popstate", () => {
+            const q = new URLSearchParams(window.location.search).get("q") || "";
+            input.value = q;
+            fetchResults(q);
+        });
+
+        const initialQ = new URLSearchParams(window.location.search).get("q");
+        if (initialQ) {
+            input.value = initialQ;
+            fetchResults(initialQ);
+        }
+    </script>
+{% endblock %}

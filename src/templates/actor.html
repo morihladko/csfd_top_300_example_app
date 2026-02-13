@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ actor.name }}{% endblock %}
+
+{% block content %}
+        <a href="/" class="text-decoration-none">&larr; Back to search</a>
+        <h1 class="mt-3 mb-4">{{ actor.name }}</h1>
+        <p><a href="https://www.csfd.cz{{ actor.url }}" target="_blank">View on CSFD</a></p>
+        <h2>Movies</h2>
+        {% if movies %}
+        <ul class="list-group">
+            {% for movie in movies %}
+            <li class="list-group-item">
+                <a href="/movie/{{ movie.id }}">{{ movie.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="text-muted">No movies listed.</p>
+        {% endif %}
+{% endblock %}
