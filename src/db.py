@@ -26,7 +26,7 @@ class Base(DeclarativeBase):
 
 def normalize(text: str) -> str:
     """
-    Normalize text for better search results.
+    Normalize text for consistent search results.
 
     >>> normalize("Český film")
     'cesky film'
@@ -58,6 +58,7 @@ def create_memory_engine() -> Engine:
 
 
 def create_scope_session(engine: Engine) -> scoped_session:
+    """Session factory for web app, creates scoped sessions to be used in a thread-safe manner."""
     session_factory = sessionmaker(bind=engine, expire_on_commit=False, autoflush=False, autocommit=False)
     return scoped_session(session_factory)
 
@@ -67,6 +68,12 @@ def create_schema(engine: Engine) -> None:
 
 
 def load_from_disk(db_file_path: str, memory_engine: Engine) -> None:
+    """
+    Loads data from disk to in-memory database. If the file does not exist, creates empty database.
+
+    We are using SQLite's backup API to copy data from disk to memory. This is much faster than dumping and loading SQL
+    statements (Per Gemini AI).
+    """
     if not os.path.exists(db_file_path):
         logger.warning("Database file %s does not exist, creating empty database", db_file_path)
         create_schema(memory_engine)
