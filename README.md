@@ -4,11 +4,21 @@ Scrapes the top 300 movies from [CSFD.cz](https://www.csfd.cz), stores them in S
 
 ## Install
 
-Requires Python 3.14+ and [uv](https://docs.astral.sh/uv/).
+Requires Python 3.14+.
+
+### Using uv
 
 ```bash
 uv sync
 uv pip install .
+```
+
+### Using pip
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
 ```
 
 ## Scraper
@@ -16,7 +26,10 @@ uv pip install .
 Fetches top 300 movies and saves to SQLite:
 
 ```bash
-uv run scraper
+uv run scraper --help
+
+# or in .venv after pip install
+scraper --help
 ```
 
 Options:
@@ -32,6 +45,9 @@ Starts the search web interface:
 
 ```bash
 uv run web
+
+# or in .venv after pip install
+web
 ```
 
 Open http://localhost:5000. Search movies and actors, click through to detail pages with links back to CSFD.
@@ -40,4 +56,7 @@ Open http://localhost:5000. Search movies and actors, click through to detail pa
 
 ```bash
 uv run pytest
+
+# or in .venv after pip install .[dev]
+pytest
 ```
