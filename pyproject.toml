@@ -1,7 +1,7 @@
 [project]
-name = "mediaboard-csfd-top300"
+name = "example-csfd-top300"
 version = "0.1.0"
-description = "Add your description here"
+description = "Example app for scraping csfd top 300 movie information"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [

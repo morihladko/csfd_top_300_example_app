@@ -1,3 +1,8 @@
+"""
+Module for service that can be used both in web and scraper part. Mainly for database access, but also for some shared
+logic.
+"""
+
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 

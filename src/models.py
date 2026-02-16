@@ -17,7 +17,7 @@ class MovieModel(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     url: Mapped[str] = mapped_column(unique=True)
     title: Mapped[str]
-    title_normalized: Mapped[str] = mapped_column(index=True)
+    title_normalized: Mapped[str] = mapped_column(index=True, comment="Normalized title for search")
 
     actors: Mapped[list["ActorModel"]] = relationship(secondary=movie_actors, back_populates="movies")
 
@@ -28,6 +28,6 @@ class ActorModel(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str]
     url: Mapped[str] = mapped_column(unique=True)
-    name_normalized: Mapped[str] = mapped_column(index=True)
+    name_normalized: Mapped[str] = mapped_column(index=True, comment="Normalized name for search")
 
     movies: Mapped[list["MovieModel"]] = relationship(secondary=movie_actors, back_populates="actors")

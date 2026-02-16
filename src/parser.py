@@ -1,3 +1,7 @@
+"""
+Main parser module, uses BeautifulSoup to parse HTML.
+"""
+
 import logging
 
 from bs4 import BeautifulSoup

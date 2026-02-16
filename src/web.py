@@ -1,3 +1,7 @@
+"""
+Main web application. Provides routes for searching movies and actors, and viewing their details.
+"""
+
 from flask import Flask, abort, render_template, request
 
 import db

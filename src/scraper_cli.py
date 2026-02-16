@@ -1,3 +1,8 @@
+"""
+Scraper CLI interface. Provides command-line interface for running the scraper using the `click` library, and uses
+`rich` for displaying progress bars and other output in the terminal.
+"""
+
 import click
 from rich.console import Console
 from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn, TimeRemainingColumn

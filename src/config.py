@@ -4,7 +4,6 @@ import os
 class Config:
     DB_FILE = os.environ.get("DB_FILE", "movies.db")
 
-    CSFD_DOMAIN = "https://www.csfd.cz"
     CSFD_TOP_300_URLS = [
         "https://www.csfd.cz/zebricky/filmy/nejlepsi/",
         "https://www.csfd.cz/zebricky/filmy/nejlepsi/?from=100",

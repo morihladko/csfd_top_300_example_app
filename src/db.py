@@ -1,3 +1,11 @@
+"""
+Main database module. Provides functions for creating and managing SQLite database connections and sessions.
+
+We use two separate connections to the same SQLite database file - one for the scraper, which writes data to disk
+to a file, and one for the web app, which loads data from disk to an in-memory database on startup. This allows us
+to have fast read access for the web app, while still being able to persist data to disk from the scraper.
+"""
+
 import logging
 import os
 import sqlite3

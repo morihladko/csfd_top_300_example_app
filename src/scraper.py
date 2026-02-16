@@ -1,3 +1,7 @@
+"""
+Main scraper module.
+"""
+
 import asyncio
 import itertools
 import logging
