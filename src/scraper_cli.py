@@ -54,7 +54,7 @@ class RichFetchProgress:
     help=f"Maximum concurrent connections. (Default: {Config.MAX_CONNECTIONS})",
 )
 @click.option("--db-file", default=Config.DB_FILE, help=f"Path to the SQLite database. (Default: {Config.DB_FILE})")
-def main(max_connections: int, db_file: str, clear_db: bool) -> None:
+def main(max_connections: int, db_file: str) -> None:
     """CSFD TOP 300 scrapper."""
     progress = RichFetchProgress()
 
