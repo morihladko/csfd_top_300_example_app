@@ -5,7 +5,7 @@ Scraper CLI interface. Provides command-line interface for running the scraper u
 
 import click
 from rich.console import Console
-from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn, TimeRemainingColumn
+from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn, TimeElapsedColumn
 
 from config import Config
 from scraper import scrape_and_save
@@ -30,7 +30,7 @@ class RichFetchProgress:
             TextColumn("[progress.description]{task.description}"),
             BarColumn(),
             TextColumn("{task.completed}/{task.total}"),
-            TimeRemainingColumn(),
+            TimeElapsedColumn(),
             console=console,
         )
         self._progress.start()
